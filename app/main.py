@@ -14,8 +14,8 @@ oauth = OAuth()
 oauth.register(
     name='google',
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-    client_id='923647480819-2mqr12c7ecrvhlsincgjmihb69mp4rfr.apps.googleusercontent.com',
-    client_secret='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',
+    client_id='your client id',
+    client_secret='your client secret',
     client_kwargs={
         'scope': 'email openid profile',
         'redirect_url': 'http://localhost:8000/auth/callback'
