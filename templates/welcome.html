@@ -17,5 +17,35 @@
         <span class="btn-text">Logout</span>
       </a>
     </div>
+    <h1>Welcome to the Image Generator</h1>
+    <form id="generateForm">
+        <label for="prompt">Enter your prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br>
+        <input type="button" value="Generate Image" onclick="generateImage()">
+    </form>
+    
+
+    <div id="imageContainer">
+        <!-- The generated image will be displayed here -->
+    </div>
+
+    <script>
+      async function generateImage() {
+          const promptText = document.getElementById('prompt').value;
+          const response = await fetch('/generate-image?prompt=' + encodeURIComponent(promptText));
+          const data = await response.json();
+
+          if (data.image_url) {
+              // If an image URL is returned, display the image
+              const img = new Image();
+              img.src = data.image_url;
+              document.getElementById('imageContainer').innerHTML = '';
+              document.getElementById('imageContainer').appendChild(img);
+          } else {
+              // If no image is returned, display an error
+              document.getElementById('imageContainer').innerHTML = 'Failed to generate image.';
+          }
+      }
+  </script>
   </body>
 </html>
